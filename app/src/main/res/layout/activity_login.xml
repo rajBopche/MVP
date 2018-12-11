@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="view"
+                type="playground.Login.LoginActivity"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <EditText
+                    android:id="@+id/edt_user_name"
+                    style="@style/edit_text"
+                    android:hint="Username"
+                    />
+
+            <EditText
+                    android:id="@+id/edt_user_password"
+                    style="@style/edit_text"
+                    android:hint="Password"/>
+            <Button
+                    android:id="@+id/btn_login"
+                    style="@style/edit_text"
+                    android:text="Login"
+                    android:onClick="@{()->view.onLoginBtnClick()}"
+            />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>
