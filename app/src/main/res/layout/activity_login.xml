@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-                name="view"
-                type="playground.Login.LoginActivity"/>
-    </data>
-    <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -32,8 +27,7 @@
                     android:id="@+id/btn_login"
                     style="@style/edit_text"
                     android:text="Login"
-                    android:onClick="@{()->view.onLoginBtnClick()}"
+                    android:onClick="onLoginBtnClick"
             />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
-</layout>

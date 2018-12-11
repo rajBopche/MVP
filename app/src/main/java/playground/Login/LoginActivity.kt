@@ -12,17 +12,14 @@ import com.example.user.playground.R
 class LoginActivity : AppCompatActivity(), LoginContract.LoginView {
 
     val mPresenter = LoginPresenter(this)
-    /*lateinit var mbinding: ActivityLoginBinding*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // mbinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         setContentView(R.layout.activity_login)
     }
 
     override fun onLoginBtnClick(v: View) {
          showLoader()
-       //mPresenter.doLogin(mbinding.edtUserName.text.toString(), mbinding.edtUserPassword.text.toString())
         mPresenter.doLogin("poonam@gmail.com","sms123")
     }
 
