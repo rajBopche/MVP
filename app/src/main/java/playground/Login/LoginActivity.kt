@@ -1,26 +1,26 @@
 package playground.Login
 
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.example.user.playground.R
+import kotlinx.android.synthetic.main.activity_login.*
+import playground.Base.BaseActivity.BaseActivity
 
 
-
-class LoginActivity : AppCompatActivity(), LoginContract.LoginView {
+class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     val mPresenter = LoginPresenter(this)
+    lateinit var userName:EditText
+    lateinit var userPasswd:EditText
+    lateinit var btnLogin: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-    }
 
     override fun onLoginBtnClick(v: View) {
          showLoader()
-        mPresenter.doLogin("poonam@gmail.com","sms123")
+        mPresenter.doLogin(userName.text.toString(),userPasswd.text.toString())
     }
 
     override fun showLoader() {
@@ -36,11 +36,25 @@ class LoginActivity : AppCompatActivity(), LoginContract.LoginView {
         //loader hidden
     }
 
+    override fun getLayout(): Int {
+        return R.layout.activity_login
+    }
+
+    override fun initView() {
+        userName = edt_user_name
+        userPasswd = edt_user_password
+        btnLogin = btn_login
+    }
+
     override fun showErrorToast() {
-        Toast.makeText(this, "Oops Something went wrong", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,getString(R.string.error_toast),Toast.LENGTH_SHORT).show()
     }
 
     override fun showSuccessToast() {
-        Toast.makeText(this, "welcome ", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,getString(R.string.success_toast),Toast.LENGTH_SHORT).show()
+    }
+
+     override fun moveToNextScreen() {
+        mPresenter.moveToNextActivity()
     }
 }

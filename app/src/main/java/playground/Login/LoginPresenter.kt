@@ -1,32 +1,38 @@
 package playground.Login
 
 import android.text.TextUtils
-import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import playground.Login.LoginContract
+import playground.Base.BaseActivity.BasePresenter
 import playground.Model.LoginResponse
+import playground.Navigator.Navigator
 import playground.Network.ApiClient
 import playground.Network.ApiService
-import retrofit2.create
+import playground.Utils.Utility
 
-class LoginPresenter(val mView:LoginContract.LoginView):LoginContract.LoginPresenter
+
+class LoginPresenter(var mView:LoginContract.LoginView?):BasePresenter<LoginContract.LoginView>(),LoginContract.LoginPresenter
 {
 
     val apiClient = ApiClient.getClient().create(ApiService::class.java)
 
+
+    override fun start(view: LoginContract.LoginView) {
+
+    }
+
     override fun doLogin(name: String, passwd: String) {
 
-        if (validation(name, passwd)){
+        if (!Utility.validateForEmptyEditText(name, passwd)){
             apiClient.login(name, passwd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<LoginResponse> {
+                .subscribe(object : Observer<LoginResponse>{
 
                     override fun onComplete() {
-                        mView.showSuccessToast()
+                        mView?.showSuccessToast()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -38,16 +44,20 @@ class LoginPresenter(val mView:LoginContract.LoginView):LoginContract.LoginPrese
                     }
 
                     override fun onError(e: Throwable) {
-                        mView.showErrorToast()
+                        mView?.showErrorToast()
                     }
                 })
 
         }else{
-            //show some error message
+            mView?.showErrorToast()
         }
     }
 
-    override fun validation(name: String, passwd: String):Boolean {
-        return (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(passwd))
+    override fun destroy() {
+        mView = null
+    }
+
+   override  fun moveToNextActivity() {
+     //Navigate to appropriate place
     }
 }

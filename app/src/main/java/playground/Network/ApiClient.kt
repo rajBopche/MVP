@@ -11,24 +11,29 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
 
 companion object {
-    lateinit var retrofit:Retrofit
+    var retrofit:Retrofit?= null
 
     fun getClient():Retrofit
     {
 
+        if(retrofit == null)
+        {
             val gson = Gson()
             val logInterceptor = HttpLoggingInterceptor()
             logInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            val okHttpClient:OkHttpClient = OkHttpClient().newBuilder().addInterceptor(logInterceptor).build()
+            val okHttpClient: OkHttpClient = OkHttpClient().newBuilder().addInterceptor(logInterceptor).build()
 
             retrofit = Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build()
 
-        return retrofit
+         return retrofit as Retrofit
+        }else {
+            return retrofit as Retrofit
+        }
     }
 }
 

@@ -1,22 +1,22 @@
 package playground.Login
 
 import android.view.View
+import playground.Base.BaseActivity.BaseView
 
 interface LoginContract {
 
-    interface LoginView {
+    interface LoginView:BaseView {
 
         fun onLoginBtnClick(v: View)
         fun onLoginResult(result: Boolean?, code: Int)
         fun showLoader()
         fun hideLoader()
-        fun showErrorToast()
-        fun showSuccessToast()
+        fun moveToNextScreen()
     }
 
     interface LoginPresenter
     {
         fun doLogin(name:String,passwd:String)
-        fun validation(name:String,passwd:String):Boolean
+        fun moveToNextActivity()
     }
 }

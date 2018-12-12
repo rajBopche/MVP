@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PlayGround</string>
+    <string name="success_toast">Welcome</string>
+    <string name="error_toast">Oops,something went wrong</string>
 </resources>

@@ -9,10 +9,7 @@ import retrofit2.http.POST
 
 interface ApiService {
 
-
     @FormUrlEncoded
     @POST("users/login")
     fun login(@Field("email")userEmail:String,@Field("password") userPassword:String):Observable<LoginResponse>
-
-
 }
