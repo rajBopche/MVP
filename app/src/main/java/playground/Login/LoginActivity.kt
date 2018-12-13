@@ -13,14 +13,14 @@ import playground.Base.BaseActivity.BaseActivity
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     val mPresenter = LoginPresenter(this)
-    lateinit var userName:EditText
-    lateinit var userPasswd:EditText
+    lateinit var userName: EditText
+    lateinit var userPasswd: EditText
     lateinit var btnLogin: Button
 
 
     override fun onLoginBtnClick(v: View) {
-         showLoader()
-        mPresenter.doLogin(userName.text.toString(),userPasswd.text.toString())
+        showLoader()
+        mPresenter.doLogin(userName.text.toString(), userPasswd.text.toString())
     }
 
     override fun showLoader() {
@@ -47,14 +47,14 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun showErrorToast() {
-        Toast.makeText(this,getString(R.string.error_toast),Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show()
     }
 
     override fun showSuccessToast() {
-        Toast.makeText(this,getString(R.string.success_toast),Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.success_toast), Toast.LENGTH_SHORT).show()
     }
 
-     override fun moveToNextScreen() {
+    override fun moveToNextScreen() {
         mPresenter.moveToNextActivity()
     }
 }
