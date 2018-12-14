@@ -22,9 +22,7 @@ class ApiClient {
                     val gson = Gson()
                     val logInterceptor = HttpLoggingInterceptor()
                     logInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                    val okHttpClient: OkHttpClient = OkHttpClient().newBuilder().addInterceptor(logInterceptor).addNetworkInterceptor(
-                        StethoInterceptor()
-                    ).build()
+                    val okHttpClient: OkHttpClient = OkHttpClient().newBuilder().addInterceptor(logInterceptor).addNetworkInterceptor(StethoInterceptor()).build()
 
                     retrofit = Retrofit.Builder()
                         .baseUrl(BASE_URL)
