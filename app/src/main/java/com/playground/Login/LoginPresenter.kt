@@ -8,14 +8,17 @@ import io.reactivex.schedulers.Schedulers
 import com.playground.Base.BaseActivity.BasePresenter
 import com.playground.Model.Pojo.LoginResponse
 import com.playground.Network.ApiClient
+import com.playground.Network.ApiManager
 import com.playground.Network.ApiService
+import com.playground.Network.ResponseCallBack
 import com.playground.Utils.Utility
 
 
 class LoginPresenter(var mView: LoginContract.LoginView?) : BasePresenter<LoginContract.LoginView>(),
     LoginContract.LoginPresenter {
 
-    val apiClient = ApiClient.getClient().create(ApiService::class.java)
+
+    val apiManager = ApiManager()
 
     override fun start(view: LoginContract.LoginView) {
 
@@ -24,28 +27,12 @@ class LoginPresenter(var mView: LoginContract.LoginView?) : BasePresenter<LoginC
     override fun doLogin(name: String, passwd: String) {
 
         if (!Utility.validateForEmptyEditText(name, passwd)) {
+            apiManager.doLogin(name,passwd,object : ResponseCallBack<LoginResponse>{
 
-            apiClient.login(name, passwd)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<LoginResponse> {
+                override fun onSuccess(response: LoginResponse) {mView?.showSuccessToast()}
 
-                    override fun onComplete() {
-                        mView?.showSuccessToast()
-                    }
-
-                    override fun onSubscribe(d: Disposable) {
-                        //
-                    }
-
-                    override fun onNext(t: LoginResponse) {
-                        //
-                    }
-
-                    override fun onError(e: Throwable) {
-                        mView?.showErrorToast()
-                    }
-                })
+                override fun onFailure(e: Throwable) {mView?.showErrorToast()}
+            })
         } else {
             mView?.showErrorToast()
         }

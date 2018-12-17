@@ -5,7 +5,7 @@ import com.playground.Base.BaseActivity.BaseView
 
 interface LoginContract {
 
-    interface LoginView:BaseView {
+    interface LoginView : BaseView {
 
         fun onLoginBtnClick(v: View)
         fun onLoginResult(result: Boolean?, code: Int)
@@ -15,9 +15,8 @@ interface LoginContract {
 
     }
 
-    interface LoginPresenter
-    {
-        fun doLogin(name:String,passwd:String)
+    interface LoginPresenter {
+        fun doLogin(name: String, passwd: String)
         fun moveToNextActivity()
 
     }

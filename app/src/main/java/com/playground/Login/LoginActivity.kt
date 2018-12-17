@@ -22,14 +22,12 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     private lateinit var userName: EditText
     private lateinit var userPasswd: EditText
     private lateinit var btnLogin: Button
-    private var db: AppDatabase? = null
-    private var genderDao: GenderDao? = null
+
 
 
     override fun onLoginBtnClick(v: View) {
         showLoader()
         mPresenter.doLogin(userName.text.toString(), userPasswd.text.toString())
-        performDbOperations()
     }
 
     override fun showLoader() {
@@ -67,20 +65,4 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         mPresenter.moveToNextActivity()
     }
 
-   private fun performDbOperations() {
-        Observable.fromCallable{
-            db = AppDatabase.getAppDataBase(this)
-            genderDao = db?.genderDao()
-
-            val gender1 = Gender(1, "Male")
-            val gender2 = Gender(2, "Female")
-
-            with(genderDao) {
-                      this?.insertGender(gender1)
-                this?.insertGender(gender2)
-            }
-            db?.genderDao()?.getGenders()
-
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe()
-    }
 }

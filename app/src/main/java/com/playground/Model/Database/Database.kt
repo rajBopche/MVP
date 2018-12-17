@@ -7,8 +7,7 @@ import android.content.Context
 
 @Database(entities = [Exercise::class, Gender::class], version = 1)
 
-abstract class AppDatabase:RoomDatabase()
-{
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun genderDao(): GenderDao
 
@@ -16,15 +15,15 @@ abstract class AppDatabase:RoomDatabase()
         var INSTANCE: AppDatabase? = null
 
         fun getAppDataBase(context: Context): AppDatabase? {
-            if (INSTANCE == null){
-                synchronized(AppDatabase::class){
+            if (INSTANCE == null) {
+                synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "myDB").build()
                 }
             }
             return INSTANCE
         }
 
-        fun destroyDataBase(){
+        fun destroyDataBase() {
             INSTANCE = null
         }
     }
