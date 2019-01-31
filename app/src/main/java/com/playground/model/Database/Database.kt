@@ -1,4 +1,4 @@
-package com.playground.Model.Database
+package com.playground.model.Database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room

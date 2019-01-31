@@ -1,29 +1,28 @@
-package com.playground.Login
+package com.playground.login
 
 
+import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.user.playground.R
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.playground.base.BaseActivity.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import com.playground.Base.BaseActivity.BaseActivity
-import com.playground.Model.Database.AppDatabase
-import com.playground.Model.Database.Gender
-import com.playground.Model.Database.GenderDao
 
+class LoginActivity: BaseActivity(), LoginContract.LoginView {
 
-class LoginActivity : BaseActivity(), LoginContract.LoginView {
+    var mPresenter: LoginPresenter = LoginPresenter(this)
 
-    private val mPresenter = LoginPresenter(this)
     private lateinit var userName: EditText
     private lateinit var userPasswd: EditText
     private lateinit var btnLogin: Button
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initView()
+    }
 
     override fun onLoginBtnClick(v: View) {
         showLoader()

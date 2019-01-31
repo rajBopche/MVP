@@ -1,4 +1,4 @@
-package com.playground.Base.BaseActivity
+package com.playground.base.BaseActivity
 
 interface BaseView {
 

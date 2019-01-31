@@ -1,4 +1,4 @@
-package com.playground.Navigator
+package com.playground.navigator
 
 class Navigator private constructor() {
     //Singleton class for Navigating to other Activity/Fragment

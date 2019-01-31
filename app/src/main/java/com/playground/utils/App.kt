@@ -1,4 +1,4 @@
-package com.playground.Utils
+package com.playground.utils
 
 import android.app.Application
 import android.content.Context

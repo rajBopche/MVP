@@ -1,4 +1,4 @@
-package com.playground.Base.BaseActivity
+package com.playground.base.BaseActivity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

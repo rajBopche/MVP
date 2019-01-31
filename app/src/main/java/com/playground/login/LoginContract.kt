@@ -1,7 +1,7 @@
-package com.playground.Login
+package com.playground.login
 
 import android.view.View
-import com.playground.Base.BaseActivity.BaseView
+import com.playground.base.BaseActivity.BaseView
 
 interface LoginContract {
 

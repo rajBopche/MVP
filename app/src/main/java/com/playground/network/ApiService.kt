@@ -1,7 +1,7 @@
-package com.playground.Network
+package com.playground.network
 
 import io.reactivex.Observable
-import com.playground.Model.Pojo.LoginResponse
+import com.playground.model.Pojo.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

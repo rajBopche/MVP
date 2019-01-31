@@ -1,4 +1,4 @@
-package com.playground.Model.Pojo
+package com.playground.model.Pojo
 
 import com.google.gson.annotations.SerializedName
 

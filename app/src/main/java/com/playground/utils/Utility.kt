@@ -1,4 +1,4 @@
-package com.playground.Utils
+package com.playground.utils
 
 class Utility
 {

@@ -1,8 +1,10 @@
-package com.playground.Base.BaseActivity
+package com.playground.base.BaseActivity
 
-import com.playground.Navigator.Navigator
+import com.playground.navigator.Navigator
 
 abstract class BasePresenter<V : BaseView>{
+
+
 
     val navigator = Navigator.getNavigator()
      abstract fun start(view:V)

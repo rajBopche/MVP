@@ -1,4 +1,4 @@
-package com.playground.Network
+package com.playground.network
 
     interface ResponseCallBack<T>
     {

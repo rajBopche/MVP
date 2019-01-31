@@ -1,6 +1,6 @@
-package com.playground.Model.Database
+package com.playground.model.Database
 
-import com.playground.Utils.App
+import com.playground.utils.App
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
