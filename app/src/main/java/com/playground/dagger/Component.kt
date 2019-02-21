@@ -8,4 +8,9 @@ import javax.inject.Singleton
 @Component(modules = [NetworkModule::class])
 interface Component {
     fun inject(mPresenter: LoginPresenter)
+
+    @Component.Builder
+    interface Builder{
+       fun build():com.playground.dagger.Component
+    }
 }

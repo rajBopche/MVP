@@ -19,7 +19,7 @@ class LoginPresenter(var mView: LoginContract.LoginView?) :
     lateinit var apiManager:ApiManager
 
     fun initDagger(){
-        DaggerComponent.builder().networkModule(NetworkModule()).build().inject(this)
+        DaggerComponent.builder().build().inject(this)
     }
 
 
