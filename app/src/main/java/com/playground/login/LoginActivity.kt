@@ -20,7 +20,7 @@ class LoginActivity: BaseActivity(), LoginContract.LoginView {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+       super.onCreate(savedInstanceState)
         initView()
     }
 

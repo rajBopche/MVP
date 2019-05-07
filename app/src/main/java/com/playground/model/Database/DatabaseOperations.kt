@@ -1,19 +1,23 @@
 package com.playground.model.Database
 
-import com.playground.utils.App
+import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class DatabaseOperations {
 
     private var db: AppDatabase? = null
     private var genderDao: GenderDao? = null
-    var appClass = App()
+
+    @Inject
+    lateinit var applicationContext: Context
+
 
     private fun performDbOperations(vararg data: String) {
         Observable.fromCallable {
-            db = AppDatabase.getAppDataBase(appClass.getAppContext())
+            db = AppDatabase.getAppDataBase(applicationContext)
             genderDao = db?.genderDao()
 
             val gender1 = Gender(1, "Male")

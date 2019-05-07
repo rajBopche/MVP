@@ -1,20 +1,20 @@
 package com.playground.utils
 
 import android.app.Application
-import android.content.Context
 import com.facebook.stetho.Stetho
+import com.playground.dagger.DaggerAppComponent
 
-class App: Application()
-{
+class App : Application() {
 
-    override fun onCreate()
-    {
+    override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
+        initDagger {
+            DaggerAppComponent.builder().providerAppContext(this).build().inject(this)
+        }
     }
 
-    fun getAppContext(): Context
-    {
-        return applicationContext
+    private fun initDagger(block: () -> Unit) {
+        block()
     }
 }
